@@ -17,7 +17,16 @@ The KiCad project for the board lives here, in `hardware/<board>/`: `<board>.kic
 - **Reviews are files.** A schematic review and a layout review are written up in `hardware/reviews/` before the
   matching gate in [`docs/index.md`](../docs/index.md).
 
+## Layout
+
+- `bmp581-breakout/`: the KiCad project (an empty sheet and an empty board so far). Its library tables point at
+  `${KOKEB_LIBS}`, the checkout of `kokeb-libs` at the pinned release tag.
+- `reviews/`: written schematic and layout reviews, the evidence for the review gates.
+- `../.kibot/release.kibot.yaml`: ERC, DRC and the release outputs (Gerbers, drill, BOM, placement, schematic PDF,
+  STEP), run by the `Hardware` workflow and kept as a build artifact.
+
 ## Checks
 
-ERC and DRC with `kicad-cli`, and the release outputs (Gerbers, BOM, placement, PDFs, 3D render) through KiBot,
-are added to the CI gate when the first board design lands in this repository.
+The `Hardware` workflow runs ERC and DRC and generates the outputs whenever this folder changes. It is not a required
+check until it has run green on a real design. The KiCad project files here were written by hand, not saved from
+KiCad, and have not been opened in KiCad yet: open them once, save, and commit the result.

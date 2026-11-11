@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "filename": "bmp581-breakout.kicad_pro",
+    "version": 3
+  },
+  "board": {
+    "design_settings": {
+      "defaults": {},
+      "rules": {
+        "min_clearance": 0.15,
+        "min_track_width": 0.15
+      }
+    }
+  },
+  "libraries": {
+    "pinned_footprint_libs": [],
+    "pinned_symbol_libs": []
+  },
+  "sheets": [
+    ["068eaf30-d5fc-4748-8110-c76667ba16da", "Root"]
+  ],
+  "text_variables": {
+    "BOARD_REV": "0.0",
+    "BOARD_STATUS": "concept"
+  }
+}

@@ -1,0 +1,42 @@
+# KiCad checks and release outputs: ERC, DRC and the outputs in .kibot/release.kibot.yaml. It runs only when the
+# hardware changes. Not a required check yet: it becomes one (added to the `gate` job's needs) once it has run green
+# on a real design, because an empty design proves little.
+name: Hardware
+
+on:
+  pull_request:
+    paths: ["hardware/**", ".kibot/**", ".github/workflows/hardware.yml"]
+  push:
+    branches: [main]
+    paths: ["hardware/**", ".kibot/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hardware-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  kicad:
+    name: KiCad checks
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          persist-credentials: false
+      - name: ERC, DRC and outputs
+        uses: INTI-CMNB/KiBot@ebcb1005faeb63ca3c2438d6c76fc810e6fdc878  # v2_k9_1_9_0
+        with:
+          config: .kibot/release.kibot.yaml
+          dir: build/hardware
+          board: hardware/bmp581-breakout/bmp581-breakout.kicad_pcb
+          schema: hardware/bmp581-breakout/bmp581-breakout.kicad_sch
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7.0.1
+        if: ${{ !cancelled() }}
+        with:
+          name: hardware-outputs
+          path: build/hardware
+          if-no-files-found: warn

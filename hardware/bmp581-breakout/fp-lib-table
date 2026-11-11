@@ -1,0 +1,4 @@
+(fp_lib_table
+	(version 7)
+	(lib (name "kokeb")(type "KiCad")(uri "${KOKEB_LIBS}/footprints/kokeb.pretty")(options "")(descr "Kokeb Labs reviewed footprints (kokeb-libs)"))
+)

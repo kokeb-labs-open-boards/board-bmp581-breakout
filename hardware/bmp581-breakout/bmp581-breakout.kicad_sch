@@ -1,0 +1,22 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "068eaf30-d5fc-4748-8110-c76667ba16da")
+	(paper "A4")
+	(title_block
+		(title "BMP581 breakout")
+		(date "2026-11-11")
+		(rev "0.0")
+		(company "Kokeb Labs")
+		(comment 1 "Concept stage: empty sheet. No circuit has been drawn or reviewed.")
+		(comment 2 "Implements R-001 to R-005 once drawn (see trace/requirements.yml)")
+	)
+	(lib_symbols)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+	(embedded_fonts no)
+)
