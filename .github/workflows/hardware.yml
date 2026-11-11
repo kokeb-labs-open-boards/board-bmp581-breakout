@@ -28,7 +28,7 @@ jobs:
         with:
           persist-credentials: false
       - name: ERC, DRC and outputs
-        uses: INTI-CMNB/KiBot@ebcb1005faeb63ca3c2438d6c76fc810e6fdc878  # v2_k9_1_9_0
+        uses: INTI-CMNB/KiBot@62a90307cc35f3ecb1ee19b0609785b421a486d2  # v2_k10_1_9_0
         with:
           config: .kibot/release.kibot.yaml
           dir: build/hardware

@@ -5,7 +5,7 @@ The KiCad project for the board lives here, in `hardware/<board>/`: `<board>.kic
 
 ## Rules
 
-- **KiCad 9 or newer.** Commit the text files KiCad writes; do not commit `*-backups/`, `*.kicad_prl`, `fp-info-cache`
+- **KiCad 10.** Commit the text files KiCad writes; do not commit `*-backups/`, `*.kicad_prl`, `fp-info-cache`
   or `_autosave-*` (the `.gitignore` already skips them).
 - **Parts come from `kokeb-libs`.** Use the symbols, footprints and 3D models that have passed review there, pinned
   by release tag. A part that is not there yet is added to `kokeb-libs` first, through its review, then used here.
@@ -19,7 +19,7 @@ The KiCad project for the board lives here, in `hardware/<board>/`: `<board>.kic
 
 ## Layout
 
-- `bmp581-breakout/`: the KiCad project (an empty sheet and an empty board so far). Its library tables point at
+- `bmp581-breakout/`: the KiCad project (an empty sheet and a placeholder outline so far). Its library tables point at
   `${KOKEB_LIBS}`, the checkout of `kokeb-libs` at the pinned release tag.
 - `reviews/`: written schematic and layout reviews, the evidence for the review gates.
 - `../.kibot/release.kibot.yaml`: ERC, DRC and the release outputs (Gerbers, drill, BOM, placement, schematic PDF,
@@ -28,5 +28,5 @@ The KiCad project for the board lives here, in `hardware/<board>/`: `<board>.kic
 ## Checks
 
 The `Hardware` workflow runs ERC and DRC and generates the outputs whenever this folder changes. It is not a required
-check until it has run green on a real design. The KiCad project files here were written by hand, not saved from
-KiCad, and have not been opened in KiCad yet: open them once, save, and commit the result.
+check until it has run green on a real design. The project is saved in KiCad 10 format; ERC and DRC give 0 violations with `kicad-cli` 10.0.8. The 20 x 20 mm
+rectangle on `Edge.Cuts` is a placeholder so that DRC has an outline to check, not a design dimension.
