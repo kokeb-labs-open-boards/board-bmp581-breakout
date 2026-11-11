@@ -1,0 +1,30 @@
+---
+# Needs: what the people who will use or integrate the board want, with where it came from. Both needs below are
+# the maintainers' starting assumptions from the Kokeb Labs roadmap; they become accepted once checked against a
+# real user conversation or request, which is then recorded as the source of a new or revised need.
+- id: N-001
+  title: Evaluate the BMP581 with its driver on the bench
+  statement: >-
+    An engineer can connect a BMP581 to a host MCU or a PC bus adapter over I2C or SPI, and run the Kokeb Labs
+    driver against the real chip, without designing a board first.
+  stakeholder: Embedded engineer evaluating the sensor and the driver
+  source:
+    kind: org
+    ref: "Kokeb Labs roadmap: drivers need hardware to be verified on; driver-bmp581 is 'not yet verified on hardware'"
+    date: 2026-11-11
+  status: draft
+  version: 1
+  classification: public
+- id: N-002
+  title: Know what has been verified before relying on the board
+  statement: >-
+    An engineer who may build the board into their own product can see which of the board's requirements have been
+    verified, how, and which have not, before they rely on it.
+  stakeholder: Integrator who evaluates the board as a component
+  source:
+    kind: org
+    ref: "Kokeb Labs supplier positioning: evidence over claims (board-template docs/evidence-pack.md)"
+    date: 2026-11-11
+  status: draft
+  version: 1
+  classification: public

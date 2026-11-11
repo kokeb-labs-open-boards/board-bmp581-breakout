@@ -1,0 +1,15 @@
+---
+# Risks at board level, with the requirements that control them. The integrator's device has its own risk file; this
+# one feeds it.
+- id: H-001
+  title: Out-of-range supply damages the sensor or corrupts readings
+  hazard: >-
+    A host or supply that exceeds the chip's VDD or VDDIO range, or applies them in a way the datasheet does not
+    allow, reaches the chip.
+  harm: >-
+    The chip is damaged, or it runs outside its limits and returns readings an integrator may not notice are wrong.
+  controls:
+    - {id: R-003, ver: 1}
+  status: open
+  version: 1
+  classification: public

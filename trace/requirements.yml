@@ -1,0 +1,72 @@
+---
+# Requirements: what the board shall do, each testable. Chip facts come from the driver's docs/hardware.yml
+# (kokeb-labs-drivers/driver-bmp581), which cites BMP581 datasheet revision 1.13 for each; the section and page are
+# given where a requirement relies on one. All are draft: nothing is approved until a reviewer who did not write
+# them has checked them against the datasheet.
+- id: R-001
+  title: Every driver-visible signal is reachable
+  statement: >-
+    The board shall bring VDD, VDDIO, GND, SCK, SDI, SDO, CSB and INT of the BMP581 to a header, so that both I2C and
+    four-wire SPI operation, and the interrupt output, can be connected without rework.
+  rationale: >-
+    N-001 needs the driver to run over either bus on the real chip. The pins and their roles are listed in
+    driver-bmp581 docs/hardware.yml (datasheet 6.1, Table 28, p. 46).
+  kind: electrical
+  derives_from:
+    - {id: N-001, ver: 1}
+  status: draft
+  version: 1
+  classification: public
+- id: R-002
+  title: Bus selection without rework
+  statement: >-
+    The board shall let the user choose I2C or four-wire SPI with jumpers or straps only. In I2C mode CSB shall be
+    held at VDDIO from power-up, and SDO shall be tied to VSS or VDDIO to set the address and never left open.
+  rationale: >-
+    The chip selects its protocol from CSB at power-up (datasheet 5.1, p. 31) and takes its I2C address from SDO
+    (datasheet 5.6, p. 38), as driver-bmp581 docs/hardware.yml records.
+  kind: electrical
+  derives_from:
+    - {id: N-001, ver: 1}
+  status: draft
+  version: 1
+  classification: public
+- id: R-003
+  title: Supplies stay within the datasheet range
+  statement: >-
+    The board shall keep VDD and VDDIO within the ranges the datasheet gives (1.71 V to 3.6 V and 1.08 V to 3.6 V),
+    from power-up to power-down, for every supply and host configuration the board documents.
+  rationale: >-
+    Out-of-range supply damages the chip or gives readings that cannot be trusted. Limits: datasheet Table 4, p. 10,
+    via driver-bmp581 docs/hardware.yml. The control for hazard H-001.
+  kind: electrical
+  derives_from:
+    - {id: N-001, ver: 1}
+  status: draft
+  version: 1
+  classification: public
+- id: R-004
+  title: The driver runs unmodified
+  statement: >-
+    driver-bmp581 shall run on the board's documented host without changes to the driver, using only a bus port class
+    and a pin map that this repository provides.
+  rationale: >-
+    The purpose of N-001 is to verify the driver on hardware; a patched driver would verify something else.
+  kind: software
+  derives_from:
+    - {id: N-001, ver: 1}
+  status: draft
+  version: 1
+  classification: public
+- id: R-005
+  title: The release states its verification status
+  statement: >-
+    Each release shall list, for every requirement, whether it is verified, planned, failed or waived, and link the
+    evidence for those verified. Anything not verified on hardware shall say so.
+  rationale: N-002 asks for evidence before reliance. The trace report and the evidence pack provide it.
+  kind: documentation
+  derives_from:
+    - {id: N-002, ver: 1}
+  status: draft
+  version: 1
+  classification: public

@@ -1,0 +1,45 @@
+---
+# Verifications: how each requirement is shown to be met. All planned: no board exists yet, so nothing has been
+# measured. A verification turns `passed` only with evidence in verification/results/.
+- id: V-001
+  title: Schematic review against the pin table
+  method: inspection
+  verifies:
+    - {id: R-001, ver: 1}
+    - {id: R-002, ver: 1}
+  procedure: verification/README.md
+  status: planned
+  evidence: []
+  version: 1
+  classification: public
+- id: V-002
+  title: Supply range measurement
+  method: test
+  verifies:
+    - {id: R-003, ver: 1}
+  procedure: verification/README.md
+  status: planned
+  evidence: []
+  version: 1
+  classification: public
+- id: V-003
+  title: Driver runs over I2C and over SPI on the board
+  method: test
+  verifies:
+    - {id: R-002, ver: 1}
+    - {id: R-004, ver: 1}
+  procedure: verification/README.md
+  status: planned
+  evidence: []
+  version: 1
+  classification: public
+- id: V-004
+  title: Release lists verification status
+  method: inspection
+  verifies:
+    - {id: R-005, ver: 1}
+  procedure: verification/README.md
+  status: planned
+  evidence: []
+  version: 1
+  classification: public
