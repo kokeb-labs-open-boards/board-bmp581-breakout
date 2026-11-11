@@ -28,5 +28,6 @@ The KiCad project for the board lives here, in `hardware/<board>/`: `<board>.kic
 ## Checks
 
 The `Hardware` workflow runs ERC and DRC and generates the outputs whenever this folder changes. It is not a required
-check until it has run green on a real design. The project is saved in KiCad 10 format; ERC and DRC give 0
-violations with `kicad-cli` 10.0.8. The 20 x 20 mm rectangle on `Edge.Cuts` is a placeholder so that DRC has an outline to check, not a design dimension.
+check until it has run green on a real design. The project is saved in KiCad 10 format; ERC and DRC give 0 violations
+with `kicad-cli` 10.0.8. The 20 x 20 mm rectangle on `Edge.Cuts` is a placeholder so that DRC has an outline to check,
+not a design dimension.
