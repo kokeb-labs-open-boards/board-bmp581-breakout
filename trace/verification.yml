@@ -43,3 +43,70 @@
   evidence: []
   version: 1
   classification: public
+- id: V-005
+  title: Header and connector inspection
+  method: inspection
+  verifies:
+    - {id: R-006, ver: 1}
+    - {id: R-007, ver: 2}
+    - {id: R-017, ver: 1}
+  procedure: verification/README.md
+  status: planned
+  evidence: []
+  version: 1
+  classification: public
+- id: V-006
+  title: Supply configurations measured
+  method: test
+  verifies:
+    - {id: R-008, ver: 1}
+    - {id: R-009, ver: 1}
+  procedure: verification/README.md
+  status: planned
+  evidence: []
+  version: 1
+  classification: public
+- id: V-007
+  title: Documentation and silkscreen review
+  method: inspection
+  verifies:
+    - {id: R-010, ver: 1}
+    - {id: R-014, ver: 1}
+  procedure: verification/README.md
+  status: planned
+  evidence: []
+  version: 1
+  classification: public
+- id: V-008
+  title: Port, mounting and outline check
+  method: inspection
+  verifies:
+    - {id: R-011, ver: 2}
+    - {id: R-012, ver: 1}
+    - {id: R-013, ver: 1}
+    - {id: R-018, ver: 1}
+  procedure: verification/README.md
+  status: planned
+  evidence: []
+  version: 1
+  classification: public
+- id: V-009
+  title: Release package build check
+  method: demonstration
+  verifies:
+    - {id: R-015, ver: 1}
+  procedure: verification/README.md
+  status: planned
+  evidence: []
+  version: 1
+  classification: public
+- id: V-010
+  title: Default configuration test
+  method: test
+  verifies:
+    - {id: R-016, ver: 1}
+  procedure: verification/README.md
+  status: planned
+  evidence: []
+  version: 1
+  classification: public

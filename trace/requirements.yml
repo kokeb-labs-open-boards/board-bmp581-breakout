@@ -70,3 +70,190 @@
   status: draft
   version: 1
   classification: public
+- id: R-006
+  title: Header with a documented pin order
+  statement: >-
+    The board shall carry one single-row 2.54 mm header with all eight signals of R-001 in a documented order, marked
+    on the silkscreen, so that it fits a breadboard and a standard cable.
+  rationale: >-
+    N-003. 2.54 mm is the common pitch of breadboards and development-board headers (ADR-0002). A wrong or unlabelled
+    order is a way to connect the board backwards (H-005).
+  kind: electrical
+  derives_from:
+    - {id: N-003, ver: 1}
+    - {id: R-001, ver: 1}
+  status: draft
+  version: 1
+  classification: public
+- id: R-007
+  title: Plug-in I2C connectors
+  statement: >-
+    The board shall carry two 4-pin 1.0 mm JST SH connectors in the Qwiic and STEMMA QT order (GND, 3.3 V, SDA, SCL),
+    wired in parallel so that boards can be chained, supplying the 3.3 V rail only and keeping the interface at 3.3 V.
+  rationale: >-
+    N-003. A plug-in cable removes soldering for the common I2C case (ADR-0002). Checked against the SparkFun Qwiic
+    page: 4-pin JST SH 1.0 mm, order GND, 3.3 V, SDA, SCL, boards run at 3.3 V, a conservative 226 mA per cable, extra
+    connectors for chaining allowed. Adafruit's STEMMA QT specification gives the same order and expects pull-ups on
+    the device; it allows 3 V to 5 V on V+, so a 3.3 V-only board is safe on both. Qwiic's rule on pull-ups was not
+    found and stays open.
+  kind: electrical
+  derives_from:
+    - {id: N-003, ver: 1}
+  status: draft
+  version: 2
+  classification: public
+- id: R-008
+  title: Single 3.3 V or 5 V supply
+  statement: >-
+    The board shall run from one 3.3 V supply, and from a 5 V supply through an onboard regulator, the source being
+    chosen by a solder jumper, and shall keep VDD within the range of R-003 in both cases.
+  rationale: >-
+    N-004. Typical development boards offer 3.3 V and 5 V; the chip allows 1.71 V to 3.6 V on VDD (ADR-0003).
+  kind: electrical
+  derives_from:
+    - {id: N-004, ver: 1}
+    - {id: R-003, ver: 1}
+  status: draft
+  version: 1
+  classification: public
+- id: R-009
+  title: VDDIO can be supplied separately
+  statement: >-
+    The board shall let VDDIO be tied to VDD by default and be supplied from its own header pin instead, by a solder
+    jumper, so that a host with logic below 3.3 V can be used.
+  rationale: >-
+    N-004. The chip takes VDD and VDDIO in any order and VDDIO down to 1.08 V (driver-bmp581 docs/hardware.yml,
+    datasheet Table 4, p. 10).
+  kind: electrical
+  derives_from:
+    - {id: N-004, ver: 1}
+    - {id: R-003, ver: 1}
+  status: draft
+  version: 1
+  classification: public
+- id: R-010
+  title: Supply and logic limits are marked
+  statement: >-
+    The silkscreen and the documentation shall state the allowed VDD and VDDIO range and that logic above VDDIO
+    must not be connected, and the documentation shall say what a 5 V host needs.
+  rationale: >-
+    The board has no level shifter in its base variant (ADR-0003), so a 5 V logic host would exceed the limits of
+    R-003. The control for H-002.
+  kind: documentation
+  derives_from:
+    - {id: N-004, ver: 1}
+    - {id: R-003, ver: 1}
+  status: draft
+  version: 1
+  classification: public
+- id: R-011
+  title: The pressure port is open and the sensor is kept clean
+  statement: >-
+    The board shall leave the sensor port unobstructed by parts, solder mask, labels or mounting hardware, and shall
+    keep heat sources, such as the regulator, away from the sensor, shown by the layout rules and a thermal analysis.
+  rationale: >-
+    N-005. A blocked port or a warm neighbour gives a wrong reading that looks plausible (H-003). The datasheet
+    (revision 1.13) does not say where the port is or give a keep-out around it, and has no guidance on gel, membranes
+    or enclosure venting; those come from Bosch's package drawing figures (pp. 68-69) and any handling application
+    note, still to be checked. It does say to avoid liquids and small particles (8.4, p. 71).
+  kind: mechanical
+  derives_from:
+    - {id: N-005, ver: 1}
+  status: draft
+  version: 2
+  classification: public
+- id: R-018
+  title: Land pattern follows the datasheet
+  statement: >-
+    The footprint and layout under the sensor shall follow the datasheet land pattern: pads 25 um larger than the
+    package pads per side, at least 200 um between pads, no vias or traces under the sensor and no solder mask under
+    it, with 20 um mask clearance per side, and solder height after reflow of at least 25 um.
+  rationale: >-
+    N-001 and N-008. Layout under the sensor affects its offset and long-term behaviour (datasheet 8.2, p. 69 and
+    8.4, p. 71, revision 1.13). The values come from a text extraction of the datasheet; the figure (Figure 32) is
+    checked at footprint review.
+  kind: mechanical
+  derives_from:
+    - {id: N-001, ver: 1}
+    - {id: N-008, ver: 1}
+  status: draft
+  version: 1
+  classification: public
+- id: R-012
+  title: Mounting holes
+  statement: >-
+    The board shall have two non-plated mounting holes for M2.5 screws at positions given in a drawing in the release
+    package, clear of the sensor port and of every signal.
+  rationale: N-005. See ADR-0005 for the screw size and why two holes suffice.
+  kind: mechanical
+  derives_from:
+    - {id: N-005, ver: 1}
+  status: draft
+  version: 1
+  classification: public
+- id: R-013
+  title: Small outline
+  statement: >-
+    The board outline shall not exceed 25.4 mm by 20.3 mm, the size of an eight-pin header row plus the connectors,
+    unless an ADR records why it must.
+  rationale: >-
+    N-003 and N-005. A small board fits fixtures and breadboards. The limit is a provisional budget from ADR-0002 and
+    is confirmed or changed by the first layout.
+  kind: mechanical
+  derives_from:
+    - {id: N-003, ver: 1}
+    - {id: N-005, ver: 1}
+  status: draft
+  version: 1
+  classification: public
+- id: R-014
+  title: Design and reasons are published
+  statement: >-
+    Each release shall include the KiCad source, the schematic PDF, the ADRs that explain the choices and the reference
+    circuit with every deviation from the datasheet figures marked.
+  rationale: N-006. An integrator reuses a design only if they can see why it is the way it is.
+  kind: documentation
+  derives_from:
+    - {id: N-006, ver: 1}
+  status: draft
+  version: 1
+  classification: public
+- id: R-015
+  title: Buildable from the release
+  statement: >-
+    Each release shall include Gerbers, drill, bill of materials, placement and assembly drawings, and the bill of
+    materials shall name the manufacturer part number, lifecycle status and an alternate for every line.
+  rationale: N-007. See manufacturing/README.md for the release package.
+  kind: manufacturing
+  derives_from:
+    - {id: N-007, ver: 1}
+  status: draft
+  version: 1
+  classification: public
+- id: R-016
+  title: Known default configuration
+  statement: >-
+    As shipped, the board shall be set to I2C at address 0x47 with INT on the header, and every change from that
+    default shall be made by a documented solder jumper.
+  rationale: >-
+    N-008. A fixed default makes a test repeatable. 0x47 is the address with SDO at VDDIO, i2c::kI2cAddressSdoHigh in
+    the driver (driver-bmp581 docs/hardware.yml).
+  kind: electrical
+  derives_from:
+    - {id: N-008, ver: 1}
+    - {id: R-002, ver: 1}
+  status: draft
+  version: 1
+  classification: public
+- id: R-017
+  title: A board can be matched to its record
+  statement: >-
+    Each board shall carry its name and revision on the silkscreen, so that a physical board can be matched to the
+    release, its errata and its evidence.
+  rationale: N-002. A result is only evidence for the revision it was measured on.
+  kind: manufacturing
+  derives_from:
+    - {id: N-002, ver: 1}
+  status: draft
+  version: 1
+  classification: public

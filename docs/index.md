@@ -4,6 +4,7 @@ This folder is the board's documentation. Start with the sections a reader needs
 
 | Page | What it covers |
 | --- | --- |
+| [Engineering baseline](engineering.md) | Stakeholders, needs, where each lands, design intent and open questions |
 | [Evidence pack](evidence-pack.md) | What a release gives an integrator, and the supplier tiers |
 | `adr/` | Decisions and why: chip choice, MCU choice, variants, licence. Copy [`adr/0000-template.md`](adr/0000-template.md) |
 | `errata.md` | Known anomalies for each revision (create it with the first one) |
