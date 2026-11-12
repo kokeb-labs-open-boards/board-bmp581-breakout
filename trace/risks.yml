@@ -32,7 +32,7 @@
   harm: >-
     The board reports a pressure or temperature that is wrong but looks reasonable, and an integrator trusts it.
   controls:
-    - {id: R-011, ver: 1}
+    - {id: R-011, ver: 2}
   status: open
   version: 1
   classification: public

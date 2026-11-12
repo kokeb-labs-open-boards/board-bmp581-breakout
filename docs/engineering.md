@@ -65,7 +65,7 @@ These change the baseline and need an answer from a person or a real user:
 1. Does anyone want an MCU on the board, and if so which one (N-009, ADR-0006)?
 2. Is a case wanted for the first release, or only the bare board (ADR-0005)?
 3. Is a 5 V logic host common enough among users to justify a level shifter (ADR-0003)?
-4. Is the Qwiic and STEMMA QT order correct as written (R-007)? Check the published specification.
+4. Where is the sensor port on the lid, and does Bosch publish venting or gel guidance? The datasheet does not (R-011).
 5. Which hardware licence applies: see the organisation's ADR on the hardware licence.
 
 ## What an agent may do next

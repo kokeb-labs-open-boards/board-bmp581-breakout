@@ -29,7 +29,8 @@ supply on a signal pin as the first failure. The exact order is fixed at schemat
 
 ## Consequences
 
-- The Qwiic order is to be checked against the published specification before R-007 is approved.
+- The Qwiic order and 3.3 V rule are checked against SparkFun's Qwiic page (R-007). Its rule on pull-ups was not found; the
+  Adafruit STEMMA QT specification expects them on the device, as ADR-0004 provides.
 - Two connectors in parallel mean the board is a pass-through on a chain; its address is fixed by the jumper
   (ADR-0004) and a chain needs distinct addresses.
 - The outline, hole positions and port keep-out are confirmed by the first layout and then checked by V-008.

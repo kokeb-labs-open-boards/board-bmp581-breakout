@@ -88,16 +88,19 @@
 - id: R-007
   title: Plug-in I2C connectors
   statement: >-
-    The board shall carry two 4-pin 1.0 mm connectors in the Qwiic and STEMMA QT order (GND, 3.3 V, SDA, SCL),
-    wired in parallel so that boards can be chained, supplying the 3.3 V rail only.
+    The board shall carry two 4-pin 1.0 mm JST SH connectors in the Qwiic and STEMMA QT order (GND, 3.3 V, SDA, SCL),
+    wired in parallel so that boards can be chained, supplying the 3.3 V rail only and keeping the interface at 3.3 V.
   rationale: >-
-    N-003. A plug-in cable removes soldering for the common I2C case (ADR-0002). The connector order is to be checked
-    against the published Qwiic specification before this requirement is approved.
+    N-003. A plug-in cable removes soldering for the common I2C case (ADR-0002). Checked against the SparkFun Qwiic
+    page: 4-pin JST SH 1.0 mm, order GND, 3.3 V, SDA, SCL, boards run at 3.3 V, a conservative 226 mA per cable, extra
+    connectors for chaining allowed. Adafruit's STEMMA QT specification gives the same order and expects pull-ups on
+    the device; it allows 3 V to 5 V on V+, so a 3.3 V-only board is safe on both. Qwiic's rule on pull-ups was not
+    found and stays open.
   kind: electrical
   derives_from:
     - {id: N-003, ver: 1}
   status: draft
-  version: 1
+  version: 2
   classification: public
 - id: R-008
   title: Single 3.3 V or 5 V supply
@@ -144,16 +147,35 @@
   version: 1
   classification: public
 - id: R-011
-  title: The pressure port is open
+  title: The pressure port is open and the sensor is kept clean
   statement: >-
     The board shall leave the sensor port unobstructed by parts, solder mask, labels or mounting hardware, and shall
     keep heat sources, such as the regulator, away from the sensor, shown by the layout rules and a thermal analysis.
   rationale: >-
-    N-005. A blocked port or a warm neighbour gives a wrong reading that looks plausible (H-003). The port position and
-    the keep-out come from the datasheet package drawing (to be cited when the footprint is reviewed).
+    N-005. A blocked port or a warm neighbour gives a wrong reading that looks plausible (H-003). The datasheet
+    (revision 1.13) does not say where the port is or give a keep-out around it, and has no guidance on gel, membranes
+    or enclosure venting; those come from Bosch's package drawing figures (pp. 68-69) and any handling application
+    note, still to be checked. It does say to avoid liquids and small particles (8.4, p. 71).
   kind: mechanical
   derives_from:
     - {id: N-005, ver: 1}
+  status: draft
+  version: 2
+  classification: public
+- id: R-018
+  title: Land pattern follows the datasheet
+  statement: >-
+    The footprint and layout under the sensor shall follow the datasheet land pattern: pads 25 um larger than the
+    package pads per side, at least 200 um between pads, no vias or traces under the sensor and no solder mask under
+    it, with 20 um mask clearance per side, and solder height after reflow of at least 25 um.
+  rationale: >-
+    N-001 and N-008. Layout under the sensor affects its offset and long-term behaviour (datasheet 8.2, p. 69 and
+    8.4, p. 71, revision 1.13). The values come from a text extraction of the datasheet; the figure (Figure 32) is
+    checked at footprint review.
+  kind: mechanical
+  derives_from:
+    - {id: N-001, ver: 1}
+    - {id: N-008, ver: 1}
   status: draft
   version: 1
   classification: public

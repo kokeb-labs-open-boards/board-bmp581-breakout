@@ -29,4 +29,6 @@ Option C is not offered. No board or case from this repository claims an ingress
 - When a case is designed, its dimensions come from the board STEP that `kicad-cli` exports, never from
   measurement, and a vent over the port is a requirement with a verification (see `mechanical/README.md`).
 - R-011 is verified by layout review and a thermal analysis, then confirmed on the bench (V-008).
-- The datasheet package drawing and port position are cited when the footprint is reviewed in `kokeb-libs`.
+- The datasheet (revision 1.13) does not state the port position or any venting or gel guidance. The package drawings
+  (pp. 68-69) and any Bosch handling note are read at footprint review in `kokeb-libs`, and R-018 records the land
+  pattern rules it does give (8.2, p. 69).

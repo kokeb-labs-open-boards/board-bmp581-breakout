@@ -48,7 +48,7 @@
   method: inspection
   verifies:
     - {id: R-006, ver: 1}
-    - {id: R-007, ver: 1}
+    - {id: R-007, ver: 2}
     - {id: R-017, ver: 1}
   procedure: verification/README.md
   status: planned
@@ -81,9 +81,10 @@
   title: Port, mounting and outline check
   method: inspection
   verifies:
-    - {id: R-011, ver: 1}
+    - {id: R-011, ver: 2}
     - {id: R-012, ver: 1}
     - {id: R-013, ver: 1}
+    - {id: R-018, ver: 1}
   procedure: verification/README.md
   status: planned
   evidence: []
