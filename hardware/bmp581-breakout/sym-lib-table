@@ -1,0 +1,4 @@
+(sym_lib_table
+	(version 7)
+	(lib (name "kokeb")(type "KiCad")(uri "${KOKEB_LIBS}/symbols/kokeb.kicad_sym")(options "")(descr "Kokeb Labs reviewed symbols (kokeb-libs)"))
+)

@@ -1,0 +1,48 @@
+# KiCad checks and release outputs: ERC, DRC and the outputs in .kibot/release.kibot.yaml. It runs only when the
+# hardware changes. Not a required check yet: it becomes one (added to the `gate` job's needs) once it has run green
+# on a real design, because an empty design proves little.
+name: Hardware
+
+on:
+  pull_request:
+    paths: ["hardware/**", ".kibot/**", ".github/workflows/hardware.yml"]
+  push:
+    branches: [main]
+    paths: ["hardware/**", ".kibot/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hardware-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # KiBot 1.9.1 with KiCad 10.0.5, pinned by digest. It is run as a container, not as an action, because the
+  # organisation allows only listed actions.
+  KIBOT_IMAGE: >-
+    ghcr.io/inti-cmnb/kicad10_auto_full@sha256:dd3b846da945f204fa7b61916df34a99170b2a2095b49c3879cd96d414b8a7b8
+  PROJECT: hardware/bmp581-breakout/bmp581-breakout
+
+jobs:
+  kicad:
+    name: KiCad checks
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          persist-credentials: false
+      - name: ERC, DRC and outputs
+        run: |
+          mkdir -p build/hardware
+          docker run --rm --user "$(id -u):$(id -g)" -e HOME=/tmp -v "$PWD:/work" -w /work "$KIBOT_IMAGE" \
+            kibot -c .kibot/release.kibot.yaml -d build/hardware \
+            -b "$PROJECT.kicad_pcb" -e "$PROJECT.kicad_sch"
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7.0.1
+        if: ${{ !cancelled() }}
+        with:
+          name: hardware-outputs
+          path: build/hardware
+          if-no-files-found: warn

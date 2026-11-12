@@ -1,0 +1,40 @@
+# KiBot configuration: the checks and the release outputs for this board. Run by .github/workflows/hardware.yml.
+# Every output lands under build/ and is attached to a release as part of the evidence pack.
+kibot:
+  version: 1
+
+preflight:
+  run_erc: true
+  run_drc: true
+  check_zone_fills: true
+
+outputs:
+  - name: schematic_pdf
+    type: pdf_sch_print
+    dir: schematic
+
+  - name: gerbers
+    type: gerber
+    dir: fabrication/gerbers
+
+  - name: drill
+    type: excellon
+    dir: fabrication/gerbers
+
+  - name: bom
+    type: bom
+    dir: bom
+    options:
+      format: CSV
+      group_fields: [Value, Footprint]
+
+  - name: placement
+    type: position
+    dir: fabrication
+    options:
+      format: CSV
+      units: millimeters
+
+  - name: step
+    type: step
+    dir: mechanical

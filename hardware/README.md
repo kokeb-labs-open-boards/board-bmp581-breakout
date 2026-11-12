@@ -5,7 +5,7 @@ The KiCad project for the board lives here, in `hardware/<board>/`: `<board>.kic
 
 ## Rules
 
-- **KiCad 9 or newer.** Commit the text files KiCad writes; do not commit `*-backups/`, `*.kicad_prl`, `fp-info-cache`
+- **KiCad 10.** Commit the text files KiCad writes; do not commit `*-backups/`, `*.kicad_prl`, `fp-info-cache`
   or `_autosave-*` (the `.gitignore` already skips them).
 - **Parts come from `kokeb-libs`.** Use the symbols, footprints and 3D models that have passed review there, pinned
   by release tag. A part that is not there yet is added to `kokeb-libs` first, through its review, then used here.
@@ -17,7 +17,17 @@ The KiCad project for the board lives here, in `hardware/<board>/`: `<board>.kic
 - **Reviews are files.** A schematic review and a layout review are written up in `hardware/reviews/` before the
   matching gate in [`docs/index.md`](../docs/index.md).
 
+## Layout
+
+- `bmp581-breakout/`: the KiCad project (an empty sheet and a placeholder outline so far). Its library tables point at
+  `${KOKEB_LIBS}`, the checkout of `kokeb-libs` at the pinned release tag.
+- `reviews/`: written schematic and layout reviews, the evidence for the review gates.
+- `../.kibot/release.kibot.yaml`: ERC, DRC and the release outputs (Gerbers, drill, BOM, placement, schematic PDF,
+  STEP), run by the `Hardware` workflow and kept as a build artifact.
+
 ## Checks
 
-ERC and DRC with `kicad-cli`, and the release outputs (Gerbers, BOM, placement, PDFs, 3D render) through KiBot,
-are added to the CI gate when the first board design lands in this repository.
+The `Hardware` workflow runs ERC and DRC and generates the outputs whenever this folder changes. It is not a required
+check until it has run green on a real design. The project is saved in KiCad 10 format; ERC and DRC give 0 violations
+with `kicad-cli` 10.0.8. The 20 x 20 mm rectangle on `Edge.Cuts` is a placeholder so that DRC has an outline to check,
+not a design dimension.
