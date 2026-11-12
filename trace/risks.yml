@@ -13,3 +13,50 @@
   status: open
   version: 1
   classification: public
+- id: H-002
+  title: Over-voltage on VDDIO from a higher-logic host
+  hazard: >-
+    A host whose logic is higher than VDDIO, such as a 5 V board, is connected to the board signal pins.
+  harm: >-
+    The chip interface pins are driven beyond their limit; the chip is damaged or reads unreliably.
+  controls:
+    - {id: R-009, ver: 1}
+    - {id: R-010, ver: 1}
+  status: open
+  version: 1
+  classification: public
+- id: H-003
+  title: Blocked port or local heat gives a plausible wrong reading
+  hazard: >-
+    The sensor port is covered, or a heat source such as the regulator warms the sensor.
+  harm: >-
+    The board reports a pressure or temperature that is wrong but looks reasonable, and an integrator trusts it.
+  controls:
+    - {id: R-011, ver: 1}
+  status: open
+  version: 1
+  classification: public
+- id: H-004
+  title: Wrong bus or address strap gives no response or the wrong device
+  hazard: >-
+    The bus mode or the I2C address strap is not what the user or the driver expects.
+  harm: >-
+    The driver finds no chip, or talks to a different device on the same bus.
+  controls:
+    - {id: R-002, ver: 1}
+    - {id: R-016, ver: 1}
+  status: open
+  version: 1
+  classification: public
+- id: H-005
+  title: Header connected backwards or shifted
+  hazard: >-
+    The header pin order is not clear, so the board is plugged in reversed or one pin off.
+  harm: >-
+    Supply reaches a signal pin or the reverse, damaging the chip.
+  controls:
+    - {id: R-006, ver: 1}
+    - {id: R-017, ver: 1}
+  status: open
+  version: 1
+  classification: public

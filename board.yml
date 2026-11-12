@@ -31,8 +31,9 @@ mcu: null               # for host: module, e.g. esp32-s3; the reason belongs in
 drivers:
   - {repo: kokeb-labs-drivers/driver-bmp581, version: 0.1.0, hardware_yml: docs/hardware.yml}
 
-variants: []
-# - {id: base, description: "Standalone breakout", requirements: all}
+variants:
+  - {id: base, description: "Standalone breakout, no MCU (ADR-0001)", requirements: all}
+# Planned, not started: a variant with an MCU, when N-009 is accepted (ADR-0006).
 
 licences:
   software: MIT

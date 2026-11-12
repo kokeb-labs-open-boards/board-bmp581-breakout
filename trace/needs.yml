@@ -28,3 +28,94 @@
   status: draft
   version: 1
   classification: public
+- id: N-003
+  title: Connect it without rework or soldering skill
+  statement: >-
+    An engineer can put the board on a breadboard, on a cable or on a test fixture and wire up every signal the
+    driver needs, without soldering to the board or cutting traces for the common configurations.
+  stakeholder: Embedded engineer evaluating the sensor
+  source:
+    kind: assumption
+    ref: "Maintainers' assumption from how comparable open breakout boards are used; check with first user input"
+    date: 2026-11-11
+  status: draft
+  version: 1
+  classification: public
+- id: N-004
+  title: Power it from the supply I already have
+  statement: >-
+    An engineer can run the board from the 3.3 V or 5 V rail of a typical development board, and from a host whose
+    logic is lower than 3.3 V, without an external adapter.
+  stakeholder: Embedded engineer evaluating the sensor
+  source:
+    kind: assumption
+    ref: "Maintainers' assumption; typical development boards offer 3.3 V and 5 V rails and some 1.8 V logic"
+    date: 2026-11-11
+  status: draft
+  version: 1
+  classification: public
+- id: N-005
+  title: Mount it and let the sensor see the air
+  statement: >-
+    An engineer can fix the board to a bench fixture or a test rig, and the pressure port is open to the air being
+    measured, not blocked by the board, its parts or its mounting.
+  stakeholder: Test engineer running the board on a rig
+  source:
+    kind: assumption
+    ref: "Maintainers' assumption; a pressure sensor measures what reaches its port"
+    date: 2026-11-11
+  status: draft
+  version: 1
+  classification: public
+- id: N-006
+  title: Reuse the design in my own product
+  statement: >-
+    An integrator can take the design as a reference for their own product: the source files, the reasons behind the
+    choices, the reference circuit and the licence are all in the repository and clear.
+  stakeholder: Integrator building a product on the sensor
+  source:
+    kind: assumption
+    ref: "Maintainers' assumption from the Kokeb Labs supplier positioning"
+    date: 2026-11-11
+  status: draft
+  version: 1
+  classification: public
+- id: N-007
+  title: Build the board myself or buy it ready made
+  statement: >-
+    A maker or an assembler can order the board and its parts from the files in a release, with a bill of materials
+    that names real parts, their lifecycle status and alternates, and without asking the maintainers questions.
+  stakeholder: Maker or contract assembler
+  source:
+    kind: assumption
+    ref: "Maintainers' assumption; boards are shipped as a release package (manufacturing/README.md)"
+    date: 2026-11-11
+  status: draft
+  version: 1
+  classification: public
+- id: N-008
+  title: Use it as a known target for the driver's tests
+  statement: >-
+    A driver maintainer can use the board as a known-good target for running the driver on real hardware, with a fixed
+    default configuration and a repeatable setup.
+  stakeholder: Kokeb Labs driver maintainer
+  source:
+    kind: assumption
+    ref: "Kokeb Labs roadmap: driver-bmp581 is not yet verified on hardware"
+    date: 2026-11-11
+  status: draft
+  version: 1
+  classification: public
+- id: N-009
+  title: Have a microcontroller on the board
+  statement: >-
+    An engineer without a host board can use the sensor with a microcontroller already on it and run the driver and
+    an example the same day.
+  stakeholder: Firmware engineer without a development board
+  source:
+    kind: assumption
+    ref: "Maintainers' assumption; deferred: the base board is standalone first (ADR-0001)"
+    date: 2026-11-11
+  status: deferred
+  version: 1
+  classification: public
